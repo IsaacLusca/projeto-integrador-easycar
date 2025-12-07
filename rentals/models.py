@@ -11,7 +11,7 @@ class Aluguel(models.Model):
     
     data_inicio = models.DateField()
     data_fim = models.DateField()
-    valor = models.DecimalField(max_digits=10, decimal_places=2)
+    valor_total = models.DecimalField(max_digits=10, decimal_places=2)
 
     STATUS_CHOICES = [
         ('ativo', 'Ativo'),
