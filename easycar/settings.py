@@ -28,6 +28,19 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',      #para sua API REST (token)
+        'rest_framework.authentication.SessionAuthentication',   #para admin Django (login web)
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',            #segurança padrão
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema', #para documentação
+}
+
+
+
 # Application definition
 
 INSTALLED_APPS = [
