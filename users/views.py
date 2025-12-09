@@ -22,7 +22,7 @@ class PerfilClienteViewSet(viewsets.ModelViewSet):
 
 
 # classe para visualizar os perfis dos clientes
-class PerfilClienteViewSet(viewsets.ReadOnlyModelViewSet):
+class PerfilClienteReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     # usa o serializador de perfil de cliente
     serializer_class = PerfilClienteSerializer
     permission_classes = [permissions.IsAuthenticated]
