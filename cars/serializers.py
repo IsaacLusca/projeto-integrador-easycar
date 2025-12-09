@@ -7,7 +7,7 @@ class CarroSerializer(serializers.ModelSerializer):
         fields = ['modelo', 'placa', 'ano', 'valor_diaria', 'status']
         read_only_fields = ['status']  # impede alterar direto
 
-class AlterarStatus(serializers.Serializer):
+class AlterarStatusSerializer(serializers.Serializer):
     status = serializers.ChoiceField(choices=Carro.STATUS_CHOICES)
 
     def update(self, instance, validated_data):
@@ -18,5 +18,4 @@ class AlterarStatus(serializers.Serializer):
             instance.marcar_como_disponivel()
         return instance
 
-    def create(self, validated_data):
-        pass  # Não é necessário para este serializer    
+      
