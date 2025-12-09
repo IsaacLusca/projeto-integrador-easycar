@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     'rentals',
     'rest_framework',
     'rest_framework.authtoken',
+     #documentação
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
