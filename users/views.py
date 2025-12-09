@@ -1,8 +1,25 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework import viewsets, permissions
 from .models import PerfilCliente
-from .serializers import PerfilClienteSerializer
+from .serializers import PerfilClienteSerializer, ClienteSerializer 
+from .permissions import IsFuncionario
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
+
+
+# CRUD de usuários (somente funcionários ou superuser)
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = ClienteSerializer
+    permission_classes = [IsAuthenticated, IsFuncionario | IsAdminUser]
+
+# CRUD de perfis de clientes (somente funcionários ou superuser)
+class PerfilClienteViewSet(viewsets.ModelViewSet):
+    queryset = PerfilCliente.objects.all()
+    serializer_class = PerfilClienteSerializer
+    permission_classes = [IsAuthenticated, IsFuncionario | IsAdminUser]
+
 
 # classe para visualizar os perfis dos clientes
 class PerfilClienteViewSet(viewsets.ReadOnlyModelViewSet):
