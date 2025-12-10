@@ -9,7 +9,7 @@ from users.permissions import IsFuncionarioOuSuperuser
 from rest_framework.permissions import IsAuthenticated
 
 
-class CarroViewSet(viewsets.ReadOnlyModelViewSet):
+class CarroViewSet(viewsets.ModelViewSet):
     queryset = Carro.objects.all()
     permission_classes = [IsAuthenticated, IsFuncionarioOuSuperuser]
     serializer_class = CarroSerializer
