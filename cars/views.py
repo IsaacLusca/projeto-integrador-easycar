@@ -13,7 +13,8 @@ class CarroViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Carro.objects.all()
     permission_classes = [IsAuthenticated, IsFuncionarioOuSuperuser]
     serializer_class = CarroSerializer
-
+    lookup_field = 'placa'
+    
     # Rota: /api/carros/disponiveis/
     @action(detail=False, methods=['get'])
     def disponiveis(self, request):
