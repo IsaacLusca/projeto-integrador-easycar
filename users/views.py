@@ -10,6 +10,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from rentals.models import Aluguel
+from rentals.serializers import AluguelSerializer
 # Temporário
 class AluguelSerializerTeste(serializers.Serializer):
     # Mock básico para testes
@@ -51,7 +52,7 @@ class PerfilClienteViewSet(viewsets.ModelViewSet):
     
 class MeusAlugueisView(viewsets.ReadOnlyModelViewSet):
     # usa o serializador de perfil de cliente
-    serializer_class = AluguelSerializerTeste
+    serializer_class = AluguelSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
