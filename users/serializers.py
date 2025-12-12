@@ -9,10 +9,16 @@ class UserSerializer(serializers.ModelSerializer):
     primeiro_nome = serializers.CharField(source='first_name', required=True)  # mapeia first_name, campo obrigatorio
     is_staff = serializers.BooleanField(default=False, read_only=True)
     is_superuser = serializers.BooleanField(default=False, read_only=True)
+    grupo = serializers.SerializerMethodField() 
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'primeiro_nome' , 'is_staff' , 'senha', 'is_active' , 'is_superuser']
+        fields = ['id', 'username', 'email', 'primeiro_nome' , 'is_staff' , 'senha', 'is_active' , 'is_superuser' , 'grupo']
+
+    def get_grupo(self, obj):
+        # retorna apenas o primeiro grupo do usuario (ou None se nao tiver grupo)
+        grupos = obj.groups.all()
+        return grupos[0].name if grupos else None
 
     def create(self, validated_data):
 
