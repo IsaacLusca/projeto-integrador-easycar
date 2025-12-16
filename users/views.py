@@ -8,7 +8,7 @@ from users.permissions import IsFuncionarioOuSuperuser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
 from rest_framework.response import Response
-
+from rentals.models import Aluguel
 from rentals.serializers import AluguelSerializer
 # Temporário
 class AluguelSerializerTeste(serializers.Serializer):
