@@ -15,9 +15,10 @@ class Aluguel(models.Model):
 
     STATUS_CHOICES = [
         ('ativo', 'Ativo'),
+        ('atrasado', 'Atrasado'), 
         ('finalizado', 'Finalizado'),
         ('cancelado', 'Cancelado'),
-    ]
+]
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='ativo')
 
     def save(self, *args, **kwargs):
