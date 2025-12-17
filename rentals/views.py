@@ -1,9 +1,8 @@
-from django.shortcuts import render
 from .models import Aluguel
 from .serializers import AluguelSerializer
-from rest_framework import viewsets, serializers
+from rest_framework import viewsets
 from users.permissions import IsFuncionarioOuSuperuser
-from .filters import AluguelFilter 
+from .filters import AluguelFilter
 
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -18,19 +17,17 @@ class AlugarViewSet(viewsets.ModelViewSet):
     permission_classes = [IsFuncionarioOuSuperuser]
     filterset_class = AluguelFilter
 
-    # Atualiza automaticamente alugueis atrasados
+    # Atualiza status atrasado (sem salvar em loop perigoso)
     def get_queryset(self):
         queryset = super().get_queryset()
         hoje = timezone.now().date()
 
-        for aluguel in queryset:
-            if aluguel.status == 'ativo' and hoje > aluguel.data_fim:
-                aluguel.status = 'atrasado'
-                aluguel.save()
+        atrasados = queryset.filter(status='ativo', data_fim__lt=hoje)
+        atrasados.update(status='atrasado')
 
         return queryset
 
-    # Criacao do aluguel
+    # Criação do aluguel
     def perform_create(self, serializer):
         aluguel = serializer.save(status='ativo')
         aluguel.carro.marcar_como_alugado()
