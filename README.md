@@ -1,4 +1,4 @@
-
+ 
 # 📦 EasyCar
 
 ## 📝 Projeto Integrador  
@@ -106,3 +106,16 @@ python manage.py migrate
 ```
 python manage.py runserver
 ```
+
+---
+
+## 📚 Documentação da API
+
+A API REST do projeto é documentada utilizando **DRF Spectacular**.
+
+Após iniciar o servidor, a documentação pode ser acessada em:
+
+- `http://localhost:8000/api/docs/`
+
+Essa interface permite visualizar todos os endpoints disponíveis, métodos HTTP, parâmetros e respostas.
+
